@@ -41,7 +41,7 @@ namespace CSingleton_Bonus16
             Console.WriteLine("CAR DATABASE:");
             foreach (Car e in cars)
             {
-                Console.WriteLine("---------------------------------------");
+                Console.WriteLine($"--------------------------------------");
                 Console.WriteLine($"Make: {e.Make}");
                 Console.WriteLine($"Model: {e.Model}");
                 Console.WriteLine($"Year: {e.Year}");
