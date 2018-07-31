@@ -75,5 +75,21 @@ namespace CSingleton_Bonus16
             }
             get { return price; }
         }
+
+        public Car()// default constructor (no argument constructor)
+        {
+            Make = "not assigned";
+            Model = "not assigned";
+            Year = 0000;
+            Price = 0;
+        }
+
+        public Car(string mk, string md, int y, double p) //Overloaded constructor
+        {
+            Make = mk;
+            Model = md;
+            Year = y;
+            Price = p;
+        }
     }
 }
