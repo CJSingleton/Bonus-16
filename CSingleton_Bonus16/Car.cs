@@ -19,14 +19,14 @@ namespace CSingleton_Bonus16
 
             set
             {
-                if (!Regex.IsMatch(value.ToString(), @"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
-                {
-                    throw new Exception("That is not valid input.");
-                }
-                else
-                {
+                //if (!Regex.IsMatch(value.ToString(), @"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
+                //{
+                //    throw new Exception("That is not valid input.");
+                //}
+                //else
+                //{
                     make = value;
-                }
+                //}
             }
             get { return make; }
         }
@@ -34,14 +34,14 @@ namespace CSingleton_Bonus16
         {
             set
             {
-                if (!Regex.IsMatch(value.ToString(), @"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
-                {
-                    throw new Exception("That is not valid input.");
-                }
-                else
-                {
+                //if (!Regex.IsMatch(value.ToString(), @"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
+                //{
+                //    throw new Exception("That is not valid input.");
+                //}
+                //else
+                //{
                     model = value;
-                }
+                //}
             }
             get { return model; }
         }
@@ -49,14 +49,14 @@ namespace CSingleton_Bonus16
         {
             set
             {
-                if (!Regex.IsMatch(value.ToString(), @"^[\d]{4}$"))
-                {
-                    throw new Exception("That is not valid input.");
-                }
-                else
-                {
+                //if (!Regex.IsMatch(value.ToString(), @"^[\d]{4}$"))
+                //{
+                //    throw new Exception("That is not valid input.");
+                //}
+                //else
+                //{
                     year = value;
-                }
+                //}
             }
             get { return year; }
         }
@@ -64,14 +64,14 @@ namespace CSingleton_Bonus16
         {
             set
             {
-                if (!Regex.IsMatch(value.ToString(), @"^(\d+\.\d{1,2})$"))
-                {
-                    throw new Exception("That is not valid input.");
-                }
-                else
-                {
+                //if (!Regex.IsMatch(value.ToString(), @"^[\d]{1, }.[\d]{1,2}$"))
+                //{
+                //    throw new Exception("That is not valid input.");
+                //}
+                //else
+                //{
                     price = value;
-                }
+                //}
             }
             get { return price; }
         }
@@ -90,6 +90,14 @@ namespace CSingleton_Bonus16
             Model = md;
             Year = y;
             Price = p;
+        }
+
+        public virtual void PrintInfo()
+        {
+            Console.WriteLine($"Make: {Make, -5}");
+            Console.WriteLine($"Model: {Model, -5}");
+            Console.WriteLine($"Year: {Year, -5}");
+            Console.WriteLine($"Price: {Price, -5}");
         }
     }
 }
