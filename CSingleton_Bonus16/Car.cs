@@ -97,7 +97,7 @@ namespace CSingleton_Bonus16
             Console.WriteLine($"Make: {Make, -5}");
             Console.WriteLine($"Model: {Model, -5}");
             Console.WriteLine($"Year: {Year, -5}");
-            Console.WriteLine($"Price: {Price, -5}");
+            Console.WriteLine($"Price: {Price, -5:C}");
         }
     }
 }

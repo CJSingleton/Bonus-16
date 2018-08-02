@@ -11,8 +11,6 @@ namespace CSingleton_Bonus16
 
         static void Main(string[] args)
         {
-            List<Car> cars = new List<Car>();//new empty list
-
             Car c1 = new Car("Ford", "Focus", 2005, 20000);
             Car c2 = new Car("Chevy", "Durango", 2015, 35000);
             Car c3 = new Car("Toyota", "Tacoma", 2017, 350000);
@@ -20,13 +18,17 @@ namespace CSingleton_Bonus16
             UsedCar uc2 = new UsedCar("Buick", "Lesabre", 2003, 1500, 180000);
             UsedCar uc3 = new UsedCar("Dodge", "Ram", 1999, 5500, 120000);
 
+            List<Car> cars = new List<Car>();//new empty list
+            
             cars.Add(c1);
             cars.Add(c2);
             cars.Add(c3);
             cars.Add(uc1);
             cars.Add(uc2);
             cars.Add(uc3);
-
+            
+            CarLot chriscars = new CarLot(cars);
+            
             bool exit = true;
 
             while (exit)
@@ -34,29 +36,29 @@ namespace CSingleton_Bonus16
                 Console.WriteLine("CAR DATABASE:");
                 Console.WriteLine("---------------------------------------");
 
-                if (cars.Count() == 0)
+                if (chriscars.Lot.Count() == 0)
                 {
                     Console.WriteLine("Sorry, we're sold out!");
                 }
                 else
                 {
-                    foreach (Car c in cars)
+                    foreach (Car c in chriscars.Lot)
                     {
-                        Console.WriteLine($"{cars.IndexOf(c) + 1,1}: {c.Year,-7} {c.Make,-7} {c.Model,-7}");
+                        Console.WriteLine($"{chriscars.Lot.IndexOf(c) + 1,1}: {c.Year,-7} {c.Make,-7} {c.Model,-7}");
                     }
                     Console.WriteLine("---------------------------------------");
                     Console.WriteLine("Please select a number to view car info");
                 }
 
-                if (cars.Count() > 0)
+                if (chriscars.Lot.Count() > 0)
                 {
-                    try//using the 'remove' funciton inside an enumeration throws an exception. Since I know that the 
-                    {
+                    try//using the 'remove' funciton inside an enumeration throws an exception.
+                    {  //the catch of this try catch displays no message since I know that it won't cause an error for this program.
                         string input = Console.ReadLine();
-                        foreach (Car c in cars)
+                        foreach (Car c in chriscars.Lot)
                         {
 
-                            if (cars.IndexOf(c) + 1 == int.Parse(input))
+                            if (chriscars.Lot.IndexOf(c) + 1 == int.Parse(input))
                             {
                                 c.PrintInfo();
                                 string yn = "";
@@ -68,9 +70,8 @@ namespace CSingleton_Bonus16
                                 {
                                     try
                                     {
-                                        cars.Remove(c);
+                                        chriscars.RemoveCar(int.Parse(input));
                                         Console.WriteLine("Enjoy your new vehicle!");
-                                        //exit = false;
                                     }
                                     catch (Exception e)
                                     {
@@ -91,7 +92,7 @@ namespace CSingleton_Bonus16
                     catch (Exception e)
                     {
                     }
-                } 
+                }
 
                 Console.WriteLine();
                 Console.WriteLine("Would you like to start over? (y/n)");
