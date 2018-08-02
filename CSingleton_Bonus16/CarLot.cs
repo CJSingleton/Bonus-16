@@ -17,12 +17,12 @@ namespace CSingleton_Bonus16
             set { lot = value; }
         }
 
-        public CarLot()
+        public CarLot()//Constructor
         {
             Lot = new List<Car>();
         }
 
-        public CarLot(List<Car> input)
+        public CarLot(List<Car> input)//Constructor
         {
             Lot = input;
         }
@@ -32,7 +32,12 @@ namespace CSingleton_Bonus16
             Lot.RemoveAt(input);//removes the car at the specified index number.
         }
 
-        public void AddCar()
+        public void InsertCar(int input, Car car)
+        {
+            Lot.Insert(input, car);//inserts a car at the specified index point.
+        }
+
+        public void NewCar()
         {
 
         }

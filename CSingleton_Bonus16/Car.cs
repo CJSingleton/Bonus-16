@@ -94,10 +94,10 @@ namespace CSingleton_Bonus16
 
         public virtual void PrintInfo()
         {
-            Console.WriteLine($"Make: {Make, -5}");
-            Console.WriteLine($"Model: {Model, -5}");
-            Console.WriteLine($"Year: {Year, -5}");
-            Console.WriteLine($"Price: {Price, -5:C}");
+            Console.WriteLine($"{"Make", -5}: {Make}");
+            Console.WriteLine($"{"Model", -5}: {Model}");
+            Console.WriteLine($"{"Year", -5}: {Year}");
+            Console.WriteLine($"{"Price", -5}: {Price:C}");
         }
     }
 }

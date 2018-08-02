@@ -14,101 +14,223 @@ namespace CSingleton_Bonus16
             Car c1 = new Car("Ford", "Focus", 2005, 20000);
             Car c2 = new Car("Chevy", "Durango", 2015, 35000);
             Car c3 = new Car("Toyota", "Tacoma", 2017, 350000);
+            Car c4 = new Car("Honda", "Accord", 2016, 280000);
             UsedCar uc1 = new UsedCar("Honda", "Accord", 1995, 3500, 170000);
             UsedCar uc2 = new UsedCar("Buick", "Lesabre", 2003, 1500, 180000);
             UsedCar uc3 = new UsedCar("Dodge", "Ram", 1999, 5500, 120000);
+            UsedCar uc4 = new UsedCar("Chevy", "Cruze", 2005, 8000, 80000);
 
             List<Car> cars = new List<Car>();//new empty list
+            List<Car> usedcars = new List<Car>();
             
             cars.Add(c1);
             cars.Add(c2);
             cars.Add(c3);
-            cars.Add(uc1);
-            cars.Add(uc2);
-            cars.Add(uc3);
+            cars.Add(c4);
+            usedcars.Add(uc1);
+            usedcars.Add(uc2);
+            usedcars.Add(uc3);
+            usedcars.Add(uc4);
             
             CarLot chriscars = new CarLot(cars);
-            
-            bool exit = true;
+            CarLot usedchriscars = new CarLot(usedcars);
 
-            while (exit)
+            bool globalexit = true;
+            while (globalexit)
             {
-                Console.WriteLine("CAR DATABASE:");
-                Console.WriteLine("---------------------------------------");
 
-                if (chriscars.Lot.Count() == 0)
+                bool newexit = false;
+                bool usedexit = false;
+
+                Console.WriteLine("Welcome to Chris's Cars!");
+                Console.WriteLine("Would you like to look at new or used vehicles?");
+                Console.WriteLine("1. Used");
+                Console.WriteLine("2. New");
+                string neworused = "";
+                neworused = Console.ReadLine();
+                if (neworused == "1")
                 {
-                    Console.WriteLine("Sorry, we're sold out!");
+                    usedexit = true;
                 }
-                else
+                if (neworused == "2")
                 {
-                    foreach (Car c in chriscars.Lot)
-                    {
-                        Console.WriteLine($"{chriscars.Lot.IndexOf(c) + 1,1}: {c.Year,-7} {c.Make,-7} {c.Model,-7}");
-                    }
+                    newexit = true;
+                }
+
+                while (newexit)
+                {
+                    Console.WriteLine("NEW CAR DATABASE:");
                     Console.WriteLine("---------------------------------------");
-                    Console.WriteLine("Please select a number to view car info");
-                }
 
-                if (chriscars.Lot.Count() > 0)
-                {
-                    try//using the 'remove' funciton inside an enumeration throws an exception.
-                    {  //the catch of this try catch displays no message since I know that it won't cause an error for this program.
-                        string input = Console.ReadLine();
+                    if (chriscars.Lot.Count() == 0)
+                    {
+                        Console.WriteLine("Sorry, we're sold out!");
+                    }
+                    else
+                    {
                         foreach (Car c in chriscars.Lot)
                         {
+                            Console.WriteLine($"{chriscars.Lot.IndexOf(c) + 1,1}: {c.Year,-7} {c.Make,-7} {c.Model,-7}");
+                        }
+                        Console.WriteLine("---------------------------------------");
+                        Console.WriteLine("Please select a number to view car info");
+                    }
 
-                            if (chriscars.Lot.IndexOf(c) + 1 == int.Parse(input))
+                    if (chriscars.Lot.Count() > 0)
+                    {
+                        try//using the 'remove' funciton inside an enumeration throws an exception.
+                        {  //the catch of this try catch displays no message since I know that it won't cause an error for this program.
+                            string input = Console.ReadLine();
+                            foreach (Car c in chriscars.Lot)
                             {
-                                c.PrintInfo();
-                                string yn = "";
-                                Console.WriteLine();
-                                Console.WriteLine("Would you like to buy this car? (y/n)");
-                                yn = Console.ReadLine().ToLower();
 
-                                if (yn == "y" || yn == "yes")
+                                if (chriscars.Lot.IndexOf(c) + 1 == int.Parse(input))
                                 {
-                                    try
+                                    c.PrintInfo();
+                                    string yn = "";
+                                    Console.WriteLine();
+                                    Console.WriteLine("Would you like to buy this car? (y/n)");
+                                    yn = Console.ReadLine().ToLower();
+
+                                    if (yn == "y" || yn == "yes")
                                     {
-                                        chriscars.RemoveCar(int.Parse(input));
-                                        Console.WriteLine("Enjoy your new vehicle!");
+                                        try
+                                        {
+                                            chriscars.RemoveCar(int.Parse(input)-1);
+                                            Console.WriteLine("Enjoy your new vehicle!");
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            Console.ReadKey();
+                                        }
                                     }
-                                    catch (Exception e)
+                                    else if (yn == "n" || yn == "no")
                                     {
-                                        Console.ReadKey();
+                                        Console.WriteLine("OK.");
                                     }
-                                }
-                                else if (yn == "n" || yn == "no")
-                                {
-                                    Console.WriteLine("OK.");
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Yes or no!");
+                                    else
+                                    {
+                                        Console.WriteLine("Yes or no!");
+                                    }
                                 }
                             }
                         }
+                        catch (Exception e)
+                        {
+                        }
                     }
-                    catch (Exception e)
+
+                    Console.WriteLine();
+                    Console.WriteLine("Would you like to look at the inventory again? (y/n)");
+                    string yn2 = Console.ReadLine().ToLower();
+                    if (yn2 == "y" || yn2 == "yes")
                     {
+
+                    }
+                    else if (yn2 == "n" || yn2 == "no")
+                    {
+                        newexit = false;
+                    }
+                    else
+                    {
+
                     }
                 }
 
-                Console.WriteLine();
+                while (usedexit)
+                {
+                    Console.WriteLine("USED CAR LOT:");
+                    Console.WriteLine("---------------------------------------");
+
+                    if (usedchriscars.Lot.Count() == 0)
+                    {
+                        Console.WriteLine("Sorry, we're sold out!");
+                    }
+                    else
+                    {
+                        foreach (Car c in usedchriscars.Lot)
+                        {
+                            Console.WriteLine($"{usedchriscars.Lot.IndexOf(c) + 1,1}: {c.Year,-7} {c.Make,-7} {c.Model,-7}");
+                        }
+                        Console.WriteLine("---------------------------------------");
+                        Console.WriteLine("Please select a number to view car info");
+                    }
+
+                    if (usedchriscars.Lot.Count() > 0)
+                    {
+                        try//using the 'remove' funciton inside an enumeration throws an exception.
+                        {  //the catch of this try catch displays no message since I know that it won't cause an error for this program.
+                            string input = Console.ReadLine();
+                            foreach (Car c in usedchriscars.Lot)
+                            {
+
+                                if (usedchriscars.Lot.IndexOf(c) + 1 == int.Parse(input))
+                                {
+                                    c.PrintInfo();
+                                    string yn = "";
+                                    Console.WriteLine();
+                                    Console.WriteLine("Would you like to buy this car? (y/n)");
+                                    yn = Console.ReadLine().ToLower();
+
+                                    if (yn == "y" || yn == "yes")
+                                    {
+                                        try
+                                        {
+                                            usedchriscars.RemoveCar(int.Parse(input)-1);
+                                            Console.WriteLine("Enjoy your new vehicle!");
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            Console.ReadKey();
+                                        }
+                                    }
+                                    else if (yn == "n" || yn == "no")
+                                    {
+                                        Console.WriteLine("OK.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Yes or no!");
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                        }
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Would you like to look at the inventory again? (y/n)");
+                    string yn2 = Console.ReadLine().ToLower();
+                    if (yn2 == "y" || yn2 == "yes")
+                    {
+
+                    }
+                    else if (yn2 == "n" || yn2 == "no")
+                    {
+                        usedexit = false;
+                    }
+                    else
+                    {
+
+                    }
+                }
                 Console.WriteLine("Would you like to start over? (y/n)");
-                string yn2 = Console.ReadLine().ToLower();
-                if (yn2 == "y" || yn2 == "yes")
+                string yn3 = Console.ReadLine().ToLower();
+                if (yn3 == "y" || yn3 == "yes")
                 {
 
                 }
-                else if (yn2 == "n" || yn2 == "no")
+                else if (yn3 == "n" || yn3 == "no")
                 {
-                    exit = false;
+                    globalexit = false;
                 }
                 else
                 {
 
                 }
+
             }
 
 
